@@ -84,15 +84,18 @@ def stemmer(mode, source, info_dis):
 	CLEANERS   = []
 
 	if mode is "1":
-		print("Chosen text file as source. [" + source + "]")
+		if not info_dis == '3':
+			print("Chosen text file as source. [" + source + "]")
 		tokens = read_file(source)
 
 	elif mode is "2":
-		print("Chosen raw string as source.")
+		if not info_dis == '3':
+			print("Chosen raw string as source.")
 		tokens = source.split(' ')
 
 	else:
-		print("Unknown mode chosen. Exiting...")
+		if not info_dis == '3':
+			print("Unknown mode chosen. Exiting...")
 		sys.exit()
 
 	for token in tokens:		
@@ -162,7 +165,7 @@ def stemmer(mode, source, info_dis):
 
 		if info_dis == '1':
 			print(token + ' : ' + word_info["root"])
-		else:
+		elif info_dis == '2':
 			print(token + ' : ' + word_info["root"] + ' = ', word_info)
 
 		word_info = {}
@@ -170,8 +173,9 @@ def stemmer(mode, source, info_dis):
 		du1_stem = du2_stem = cle_stem = '-'
 
 	write_file(stemmed, word_root, root_only)
-	print('Accuracy: ' + str(validate(root_only, errors)) + '%')
-	print('Errors: ' + (str(set(errors)) if len(errors) >= 1 else '[]'))
+	if not info_dis == '3':
+		print('Accuracy: ' + str(validate(root_only, errors)) + '%')
+		print('Errors: ' + (str(set(errors)) if len(errors) >= 1 else '[]'))
 
 	return stemmed, root_only
 
@@ -590,7 +594,7 @@ if __name__ == "__main__":
 	
 	mode = sys.argv[1] # 1: Text File // 2: Raw String
 	source = sys.argv[2] # 1: .txt name // 2: raw string
-	info_dis = sys.argv[3] # 1: no info // 2: show info
+	info_dis = sys.argv[3] # 1: no info(show word: root) // 2: show info // 3: suppress print messages
 	
 	stemmer(mode, source, info_dis)
 
