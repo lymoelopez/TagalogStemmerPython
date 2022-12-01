@@ -526,7 +526,7 @@ def read_file(source):
 		returns LIST
 	"""
 
-	with open(source, 'r') as myfile:
+	with open(source, 'r', encoding = "ISO-8859-1") as myfile:
 		data = myfile.read().replace('\n', ' ')
 
 	return data.split(' ')
@@ -552,7 +552,7 @@ def write_file(stemmed_info, word_root, root):
 
 
 def check_validation(token):
-	with open('validation.txt', 'r') as valid:
+	with open('validation.txt', 'r', encoding = "ISO-8859-1") as valid:
 		data = valid.read().replace('\n', ' ').split(' ')
 		# data = set([line.strip('\n') for line in valid.readlines()])
 
@@ -570,7 +570,7 @@ def validate(stemmed, errors):
 
 	check = 0
 
-	with open('validation.txt', 'r') as valid:
+	with open('validation.txt', 'r',encoding = "ISO-8859-1") as valid:
 		data = valid.read().replace('\n', ' ').split(' ')
 		# data = set([line.strip('\n') for line in valid.readlines()])
 		
@@ -586,11 +586,12 @@ def validate(stemmed, errors):
 
 
 
-mode = sys.argv[1] # 1: Text File // 2: Raw String
-source = sys.argv[2] # 1: .txt name // 2: raw string
-info_dis = sys.argv[3] # 1: no info // 2: show info
-
 if __name__ == "__main__":
+	
+	mode = sys.argv[1] # 1: Text File // 2: Raw String
+	source = sys.argv[2] # 1: .txt name // 2: raw string
+	info_dis = sys.argv[3] # 1: no info // 2: show info
+	
 	stemmer(mode, source, info_dis)
 
 
