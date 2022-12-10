@@ -61,9 +61,9 @@ def stemmer(mode, source, info_dis):
 			source: the string or file name 
 		returns LIST
 	"""
-
-	print("TAGALOG WORDS STEMMER....")
-	print("[1 FileName] [2 RawString] [3 ShowInfo]")
+	if not info_dis == '3':
+		print("TAGALOG WORDS STEMMER....")
+		print("[1 FileName] [2 RawString] [3 ShowInfo]")
 
 	global PERIOD_FLAG
 	global PASS_FLAG
@@ -342,7 +342,8 @@ def clean_suffix(token, SUFFIX):
 
 					# if check_vowel(suffix[0]) and check_consonant(token[len])
 
-					print(token[0: len(token) - len(suffix)] + " : " + suffix)
+					if not info_dis == '3':
+						print(token[0: len(token) - len(suffix)] + " : " + suffix)
 
 					if check_validation(token[0: len(token) - len(suffix)]):
 						SUFFIX.append(suffix)
