@@ -110,7 +110,7 @@ def stemmer(mode, source, info_dis):
 			rep_stem = clean_repitition(pre_stem, REPITITION)
 			inf_stem = clean_infix(rep_stem, INFIX)
 			rep_stem = clean_repitition(inf_stem, REPITITION)
-			suf_stem = clean_suffix(rep_stem, SUFFIX)
+			suf_stem = clean_suffix(rep_stem, SUFFIX, info_dis)
 			du2_stem = clean_duplication(suf_stem, DUPLICATE)
 			cle_stem = clean_stemmed(du2_stem, CLEANERS, REPITITION)
 			cle_stem = clean_duplication(cle_stem, DUPLICATE)
@@ -126,7 +126,7 @@ def stemmer(mode, source, info_dis):
 				rep_stem  = clean_repitition(pre_stem, REPITITION)
 				inf_stem  = clean_infix(rep_stem, INFIX)
 				rep_stem  = clean_repitition(inf_stem, REPITITION)
-				suf_stem  = clean_suffix(rep_stem, SUFFIX)
+				suf_stem  = clean_suffix(rep_stem, SUFFIX, info_dis)
 				du2_stem  = clean_duplication(suf_stem, DUPLICATE)
 				cle_stem  = clean_stemmed(du2_stem, CLEANERS, REPITITION)
 				cle_stem  = clean_duplication(cle_stem, DUPLICATE)
@@ -317,7 +317,7 @@ def clean_infix(token, INFIX):
 	return token
 
 
-def clean_suffix(token, SUFFIX):
+def clean_suffix(token, SUFFIX, info_dis):
 	"""
 		Checks token for suffixes. (ex. bigayan = bigay)
 			token: word to be stemmed for suffixes
