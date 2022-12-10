@@ -83,12 +83,12 @@ def stemmer(mode, source, info_dis):
 	REPITITION = []
 	CLEANERS   = []
 
-	if mode is "1":
+	if mode == "1":
 		if not info_dis == '3':
 			print("Chosen text file as source. [" + source + "]")
 		tokens = read_file(source)
 
-	elif mode is "2":
+	elif mode == "2":
 		if not info_dis == '3':
 			print("Chosen raw string as source.")
 		tokens = source.split(' ')
