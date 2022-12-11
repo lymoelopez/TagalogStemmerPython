@@ -555,10 +555,11 @@ def write_file(stemmed_info, word_root, root):
 			root_word.write(rw + '\n')
 			root_only.write(ro + '\n')
 
-
+with open('validation.txt', 'r', encoding = "ISO-8859-1") as valid:
+	data = valid.read().replace('\n', ' ').split(' ')
+		
 def check_validation(token):
-	with open('validation.txt', 'r', encoding = "ISO-8859-1") as valid:
-		data = valid.read().replace('\n', ' ').split(' ')
+	global data
 		# data = set([line.strip('\n') for line in valid.readlines()])
 
 	return True if token in data else False
