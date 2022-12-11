@@ -159,10 +159,12 @@ def stemmer(mode, source, info_dis):
 			word_info["dupli"]  = '[]'
 			word_info["clean"]   = '[]'
 
-		stemmed.append(word_info)
-		root_only.append(word_info["root"])
-		word_root.append(word_info["word"] + ' : ' + word_info["root"])
+		if not info_dis == '3':	
+			stemmed.append(word_info)
+			word_root.append(word_info["word"] + ' : ' + word_info["root"])
 
+		root_only.append(word_info["root"])
+		
 		if info_dis == '1':
 			print(token + ' : ' + word_info["root"])
 		elif info_dis == '2':
@@ -172,8 +174,9 @@ def stemmer(mode, source, info_dis):
 		pre_stem = inf_stem = suf_stem = rep_stem = \
 		du1_stem = du2_stem = cle_stem = '-'
 
-	write_file(stemmed, word_root, root_only)
+	
 	if not info_dis == '3':
+		write_file(stemmed, word_root, root_only)
 		print('Accuracy: ' + str(validate(root_only, errors)) + '%')
 		print('Errors: ' + (str(set(errors)) if len(errors) >= 1 else '[]'))
 
